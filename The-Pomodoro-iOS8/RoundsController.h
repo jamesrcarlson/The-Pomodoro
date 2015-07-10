@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic, readonly) NSArray *roundTimes;
 
-@property (assign) NSInteger *currentRound;
+@property (assign, nonatomic) NSInteger currentRound;
+
+-(void)roundSelected;
 
 @end

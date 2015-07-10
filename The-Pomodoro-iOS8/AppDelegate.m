@@ -28,8 +28,10 @@
     RoundsViewController *roundsViewController = [RoundsViewController new];
     
     tabBarController.viewControllers = @[timerViewController, roundsViewController];
-    timerViewController.tabBarItem.title = @"Timer";
-    roundsViewController.tabBarItem.title = @"Rounds";
+//    timerViewController.tabBarItem.title = @"Timer";
+//    roundsViewController.tabBarItem.title = @"Rounds";
+    roundsViewController.tabBarItem.image = [UIImage imageNamed:@"Rounded Rectangle-50.png"];
+    timerViewController.tabBarItem.image = [UIImage imageNamed:@"Clock-50.png"];
     
     self.window.rootViewController = tabBarController;
     

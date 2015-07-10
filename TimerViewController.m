@@ -11,7 +11,7 @@
 
 @interface TimerViewController ()
 
-@property (weak) UILabel *timerLabel;
+@property (strong) UILabel *timerLabel;
 @property (strong) UIButton *timerButton;
 
 @end
@@ -23,10 +23,10 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    UILabel *timerLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 150, 80, 40)];
-    timerLabel.text = [[Timer sharedInstance]timeRemaining];
-    timerLabel.textColor = [UIColor blackColor];
-    [self.view addSubview:timerLabel];
+    self.timerLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 150, 80, 40)];
+    self.timerLabel.text = [[Timer sharedInstance]timeRemaining];
+    self.timerLabel.textColor = [UIColor blackColor];
+    [self.view addSubview:self.timerLabel];
     
     UIButton *timerButton = [[UIButton alloc]initWithFrame:CGRectMake(130, 200, 80, 40)];
     [timerButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -36,6 +36,7 @@
     [timerButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:timerButton];
     [self notifications];
+    [self updateTimerLabel];
     
 
 }
@@ -62,7 +63,15 @@
 
 -(void)notifications{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateTimerLabel) name:SecondTickNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newRound) name:NewRoundNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(newRound) name:TimerCompleteNotificationKey object:nil];
 }
+
+-(void)newRound {
+    [self updateTimerLabel];
+    self.timerButton.enabled = YES;
+}
+
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];

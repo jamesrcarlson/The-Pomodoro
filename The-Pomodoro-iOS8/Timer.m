@@ -25,8 +25,8 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [Timer new];
         
-        sharedInstance.minutes = 2;
-        sharedInstance.seconds = 59;
+//        sharedInstance.minutes = 2;
+//        sharedInstance.seconds = 59;
     });
     return sharedInstance;
 }

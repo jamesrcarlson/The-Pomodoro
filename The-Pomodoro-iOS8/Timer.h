@@ -23,5 +23,6 @@ static NSString * const NewRoundNotificationKey = @"newRoundNotification";
 -(void)startTimer;
 
 -(NSString *)timeRemaining;
+-(void)cancelTimer;
 
 @end
