@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TimerViewController.h"
 #import "RoundsViewController.h"
+#import "AppearanceController.h"
 
 @interface AppDelegate ()
 
@@ -37,6 +38,8 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [AppearanceController setAppAppearances];
     
     return YES;
 }

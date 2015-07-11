@@ -9,10 +9,13 @@
 #import "RoundsViewController.h"
 #import "RoundsController.h"
 #import "Timer.h"
+#import "AppearanceController.h"
 
 @interface RoundsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
+
+//@property (assign) UITableViewCell *cell;
 
 @end
 
@@ -40,10 +43,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rounds"];
     
+    cell = [tableView dequeueReusableCellWithIdentifier:@"rounds"];
+    
     NSArray *roundsArray = [RoundsController sharedInstance].roundTimes;
     NSNumber *minutes = roundsArray[indexPath.row];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%li minutes", (long)[minutes integerValue]];
+    cell.imageView.image = [UIImage imageNamed:[AppearanceController setImagesToCells][indexPath.row]];
     
     return cell;
 }
@@ -62,6 +68,26 @@
     [[Timer sharedInstance]cancelTimer];
     
 }
+/*
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    UITableViewCell *myCell = [UITableViewCell new];
+////    myCell.imageView.image = [UIImage imageNamed:[AppearanceController setImagesToCells][10]];
+//    myCell.backgroundColor = [UIColor lightGrayColor];
+    [self setPicture];
+}
+
+
+
+-(UITableViewCell *)setPicture {
+
+        UITableViewCell *myCell = [UITableViewCell new];
+        myCell.imageView.image = [UIImage imageNamed:[AppearanceController setImagesToCells][10]];
+        myCell.backgroundColor = [UIColor lightGrayColor];
+
+    return myCell;
+} */
+
 -(void)roundComplete {
     if ([RoundsController sharedInstance].currentRound < [RoundsController sharedInstance].roundTimes.count - 1) {
         [RoundsController sharedInstance].currentRound++;
